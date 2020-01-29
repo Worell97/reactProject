@@ -6,7 +6,7 @@ import ProfileOptions from '../profileOptions/profileOptions';
 
 export default function LoginPopover(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const AccountIcon = "../../img/Account_Icon.png";
+  const AccountIcon = "https://github.com/Worell97/reactProject/tree/master/src/img/Account_Icon.png";
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
