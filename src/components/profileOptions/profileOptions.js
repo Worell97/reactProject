@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import AccountIcon from 'https://github.com/Worell97/reactProject/tree/master/src/img/Account_Icon.png';
-import SettingsIcon from 'https://github.com/Worell97/reactProject/tree/master/src/img/Settings_Icon.png';
-import ExitIcon from 'https://github.com/Worell97/reactProject/tree/master/src/img/Exit_Icon.png';  
+
+const AccountIcon = 'https://github.com/Worell97/reactProject/tree/master/src/img/Account_Icon.png';
+const SettingsIcon = 'https://github.com/Worell97/reactProject/tree/master/src/img/Settings_Icon.png';
+const ExitIcon = 'https://github.com/Worell97/reactProject/tree/master/src/img/Exit_Icon.png';  
 
 
 export default function ProfileOptions(props){

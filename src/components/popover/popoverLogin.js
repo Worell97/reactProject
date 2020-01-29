@@ -2,11 +2,11 @@ import React from 'react';
 import Popover from '@material-ui/core/Popover';
 import Login from "../login/login";
 import ProfileOptions from '../profileOptions/profileOptions';
-import AccountIcon from 'https://github.com/Worell97/reactProject/tree/master/src/img/Account_Icon.png';
+
 
 export default function LoginPopover(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
-
+  const AccountIcon = "../../img/Account_Icon.png";
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
@@ -23,7 +23,7 @@ export default function LoginPopover(props) {
       {
         props.connected ?  
         <button onClick={handleClick} style={{width: '40px', height: '40px',borderRadius: '50%', padding: '0', border: '0'}}>  
-            <img src={AccountIcon} alt='' style={{width: '40px', height: '40px', borderRadius: '50%'}}/>   
+            <img src={require( `${ AccountIcon }` )} alt='' style={{width: '40px', height: '40px', borderRadius: '50%'}}/>   
         </button> 
         : 
         <button className='btn btn-light float-sm-left' onClick={handleClick}>Log in</button>          
