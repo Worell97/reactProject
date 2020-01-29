@@ -46,11 +46,11 @@ function OptionListItem(props){
 function ImgIcons(props){ 
     switch (props.IconName) {
         case 'Account':
-            return <img src={AccountIcon} className={props.IconName+'_Icon'}alt=''/>;  
+            return <img src={require( `${ AccountIcon }` )} className={props.IconName+'_Icon'}alt=''/>;  
         case 'Settings':
-            return <img src={SettingsIcon} className={props.IconName+'_Icon'}alt=''/>;  
+            return <img src={require( `${ SettingsIcon }` )} className={props.IconName+'_Icon'}alt=''/>;  
         case 'Exit':
-            return <img src={ExitIcon} className={props.IconName+'_Icon'}alt=''/>;  
+            return <img src={require( `${ ExitIcon }` )} className={props.IconName+'_Icon'}alt=''/>;  
         default:
             return null;
     }
