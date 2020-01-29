@@ -2,7 +2,7 @@ import React from 'react';
 import Popover from '@material-ui/core/Popover';
 import Login from "../login/login";
 import ProfileOptions from '../profileOptions/profileOptions';
-import AccountIcon from 'C:/Users/oscar.filho/OneDrive/ProjetosOscar/projeto2/src/img/Account_Icon.png';
+import AccountIcon from 'https://github.com/Worell97/reactProject/tree/master/src/img/Account_Icon.png';
 
 export default function LoginPopover(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
