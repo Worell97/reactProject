@@ -1,1 +1,1 @@
-export const URL_API = "https://github.com/Worell97/reactProject/tree/master/";
+export const URL_API = "http://www.devup.com.br/php/api-dashboard/api";

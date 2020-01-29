@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const AccountIcon = 'https://github.com/Worell97/reactProject/tree/master/src/img/Account_Icon.png';
-const SettingsIcon = 'https://github.com/Worell97/reactProject/tree/master/src/img/Settings_Icon.png';
-const ExitIcon = 'https://github.com/Worell97/reactProject/tree/master/src/img/Exit_Icon.png';  
+const AccountIcon = '../../img/Account_Icon.png';
+const SettingsIcon = '../../img/Settings_Icon.png';
+const ExitIcon = '../../img/Exit_Icon.png';  
 
 
 export default function ProfileOptions(props){
@@ -46,11 +46,11 @@ function OptionListItem(props){
 function ImgIcons(props){ 
     switch (props.IconName) {
         case 'Account':
-            return <img src={require( `${ AccountIcon }` )} className={props.IconName+'_Icon'}alt=''/>;  
+            return <img src={AccountIcon} className={props.IconName+'_Icon'}alt=''/>;  
         case 'Settings':
-            return <img src={require( `${ SettingsIcon }` )} className={props.IconName+'_Icon'}alt=''/>;  
+            return <img src={ SettingsIcon} className={props.IconName+'_Icon'}alt=''/>;  
         case 'Exit':
-            return <img src={require( `${ ExitIcon }` )} className={props.IconName+'_Icon'}alt=''/>;  
+            return <img src={ ExitIcon} className={props.IconName+'_Icon'}alt=''/>;  
         default:
             return null;
     }
