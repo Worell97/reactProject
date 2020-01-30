@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 
 export default function Sessao3(){
     return(
@@ -6,57 +6,127 @@ export default function Sessao3(){
     );    
 }
 
-function Feed(){  
-    const [Posts, setPosts] = [
-        {content: 'This is my first post!'},
-        {content: 'This is my second post!'},
-        {content: 'This is my third post!'},
-        {content: 'This is my fourth post!'},
-        {content: 'This is my fifth post!'},
-        {content: 'This is my sixth post!'},
-        {content: 'This is my seventh post!'},
-    ];
-      
-    const postList = Posts.map((post, index) =>
-        <Post key={index} value={post} content={post.content}/>
-    );
-
-    function handleNewPost(post){
-        setPosts({
-          Posts: Posts.concat([post])
+const categories = ['World', 'Business', 'Tech', 'Sport']; 
+class Feed extends Component{ 
+    constructor(props){
+        super(props);
+        this.state = {
+            posts: JSON.parse(localStorage.getItem('posts')) || [],
+            filteredPosts: []
+        }
+        this.handleNewPost = this.handleNewPost.bind(this);
+        this.handleFilter = this.handleFilter.bind(this);
+    }
+    handleNewPost(post){
+        var posts = this.state.posts.concat([post]);
+        this.setState({posts: posts});
+        localStorage.setItem('posts', JSON.stringify(posts));
+    }
+    handleFilter(filter){
+        this.setState({
+            filteredPosts: this.state.posts.filter((post) =>
+                post.category.toUpperCase() === filter.toUpperCase() ||
+                post.content.includes(filter)
+            )
         });
     }
 
-    return (
-        <div className="feed">
-            {postList}
-            <PostForm onSubmit={handleNewPost}/>
-        </div>
-    );
+    render(){
+        const postList = this.state.posts.map((post, index) =>
+            <Post key={index} value={post} content={post.content}/>
+        );
+        const filteredPosts = this.state.filteredPosts.map((post, index) =>
+            <Post key={index} value={post} content={post.content}/>
+        );
+
+        return (
+            <div className="feed">
+                <Filter onFilter={this.handleFilter}/>
+                <PostForm onSubmit={this.handleNewPost}/>
+                {filteredPosts.length > 0 ? filteredPosts : postList}
+            </div>
+        );
+    }
 }
 
-function PostForm(){
-    function handleSubmit(event){
+class Filter extends Component{
+    constructor(props){
+        super(props);
+        this.state = {value: ''};
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleKeyUp = this.handleKeyUp.bind(this);
+    }
+
+    handleChange(event){
+        this.setState({value: event.target.value});
+        if(event.target.value ===''){
+            this.props.onFilter('');
+        }
+    }
+
+    handleKeyUp(event){
+        if(event.key === 'Enter'){
+            this.props.onFilter(this.state.value);
+        }
+    }
+    render(){
+        return(
+            <div>
+                <label>
+                    <input type='search' value={this.state.value}
+                                         onChange={this.handleChange}
+                                         onKeyUp={this.handleKeyUp}
+                                         placeHolder='Filter by category or content...'
+                    />
+                </label>
+            </div>
+        )
+    }
+}
+
+class PostForm extends Component{
+    constructor(props){
+        super(props);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    handleSubmit(event){
+        this.props.onSubmit({
+            category: this.category.value,
+            content: this.content.value
+        });
+        this.category.value = categories[0];
         this.content.value = '';
         event.preventDefault();
     };
-    return(
-        <div className='psot-form'>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Content:
-                    <input type='text' ref={(input) => this.content = input}/>
-                </label>
-                <button className='button'>Submit</button>
-            </form>
-        </div>
-    );
+    render(){
+        return(
+            <div className='psot-form'>
+                <form onSubmit={this.handleSubmit}>
+                    <label>
+                        Category:
+                        <select ref={(input) => this.category = input}>
+                            {categories.map((category, index) => 
+                                <option key={category} value={category}>{category}</option>
+                            )}
+                        </select>
+                    </label>
+                    <label>
+                        Content:
+                        <input type='text' ref={(input) => this.content = input}/>
+                    </label>
+                    <button className='button'>Submit</button>
+                </form>
+            </div>
+        );
+    }
 
 }
 function Post(props){
     return(
         <div className="post">
-            <span>{props.content}</span>
+            <span className='label'>{props.value.category}</span>
+            <span className='content'>{props.value.content}</span>
         </div>
     );
 }
