@@ -18,11 +18,11 @@ function Login(props){
                             <input className="form-control ls-login-bg-password input-lg" id="userPassword" type="password" aria-label="Senha" placeholder="Senha"/>
                         </div>
         
-                        <a href="#" className="ls-login-forgot">Esqueci minha senha</a>
+                        <a href="https://github.com/Worell97/reactProject/runs/432027119" className="ls-login-forgot">Esqueci minha senha</a>
         
                         <input type="submit" value="Entrar" className="btn btn-primary btn-lg btn-block" onClick={props.onClick}/>
                         <p className="txt-center ls-login-signup">Não possui um usuário?
-                            <a href="#">Cadastre-se agora</a>
+                            <a href="https://github.com/Worell97/reactProject/runs/432027119">Cadastre-se agora</a>
                         </p>        
                     </fieldset>
                 </form>
